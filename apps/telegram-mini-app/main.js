@@ -1,12 +1,10 @@
+import { createTelegramAdapter } from './telegram-adapter.js';
+
 const status = document.getElementById('status');
-const telegram = window.Telegram?.WebApp;
+const telegram = createTelegramAdapter(window.Telegram?.WebApp);
+telegram.prepareScreen();
 
-if (telegram) {
-  telegram.ready();
-  telegram.expand();
-}
-
-status.textContent = telegram?.initData
+status.textContent = telegram.hasLaunchData()
   ? 'Данные запуска Telegram получены. Это тестовый экран.'
   : 'Для проверки запуска откройте приложение из чата с ботом в Telegram.';
 
