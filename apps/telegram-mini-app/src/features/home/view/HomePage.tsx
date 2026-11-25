@@ -7,10 +7,12 @@ import { AppHeader } from '../../../shared/ui/AppHeader';
 import { PrimaryButton } from '../../../shared/ui/PrimaryButton';
 import { BottomNav } from '../../../shared/ui/BottomNav';
 import { mockHomeProgram } from '../model/homeData';
+import { useNavigate } from 'react-router-dom';
 
 export function HomePage() {
   const program = mockHomeProgram;
   const exercises = program.nextWorkout.exercises;
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -258,17 +260,15 @@ export function HomePage() {
             ))}
           </Box>
 
-          {/* Пока экран самой тренировки не готов */}
           <PrimaryButton
-            disabled
-            endIcon={<AppIcon name="arrow-right" size={16} dark />}
-            sx={{
-              '&.Mui-disabled': {
-                bgcolor: 'primary.main',
-                color: 'primary.contrastText',
-                opacity: 0.65,
-              },
-            }}
+            onClick={() => navigate('/workout/3/plan')}
+            endIcon={
+              <AppIcon
+                name="arrow-right"
+                size={16}
+                dark
+              />
+            }
           >
             Открыть тренировку
           </PrimaryButton>
@@ -276,19 +276,34 @@ export function HomePage() {
 
         {/* Моя программа */}
         <Box
+          component="button"
+          type="button"
+          onClick={() => navigate('/program')}
           sx={{
+            width: '100%',
             bgcolor: 'background.paper',
             borderRadius: '18px',
+            border: 'none',
+            color: 'text.primary',
+            fontFamily: 'inherit',
+            textAlign: 'left',
+            cursor: 'pointer',
             p: 1.75,
             display: 'flex',
             alignItems: 'center',
             gap: 1.5,
+            '&:hover': {
+              bgcolor: '#293738',
+            },
+            '&:focus-visible': {
+              outline: '2px solid #C8F866',
+              outlineOffset: 2,
+            },
           }}
         >
           <Box
             sx={{
               bgcolor: '#314D36',
-              color: 'primary.main',
               borderRadius: '12px',
               p: 1,
               display: 'flex',
@@ -303,6 +318,7 @@ export function HomePage() {
               sx={{
                 fontSize: 14,
                 fontWeight: 600,
+                color: 'text.primary',
               }}
             >
               Моя программа
@@ -320,6 +336,7 @@ export function HomePage() {
 
           <AppIcon name="chevron-right" size={23} />
         </Box>
+
       </Box>
 
       <BottomNav />

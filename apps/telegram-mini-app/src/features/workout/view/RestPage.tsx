@@ -33,7 +33,7 @@ export function RestPage() {
     const interval = window.setInterval(update, 1000);
     return () => window.clearInterval(interval);
   }, [restUntil]);
-  
+
   function continueWorkout() {
     clearRest();
 

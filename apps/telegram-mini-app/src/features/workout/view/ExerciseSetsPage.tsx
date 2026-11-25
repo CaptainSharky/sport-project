@@ -142,7 +142,7 @@ function Stepper({
 export function ExerciseSetsPage() {
   const navigate = useNavigate();
   const { day: dayParam, id } = useParams();
-  const day = Number(dayParam); 
+  const day = Number(dayParam);
   const exercise = getWorkoutExercises(day).find(
     (item) => item.id === Number(id)
   );

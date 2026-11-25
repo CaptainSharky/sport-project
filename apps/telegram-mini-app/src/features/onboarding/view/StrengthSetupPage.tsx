@@ -1,4 +1,4 @@
-
+const SKIP_VALIDATION_IN_DEV = import.meta.env.DEV;
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Typography } from '@mui/material';
@@ -110,15 +110,20 @@ export function StrengthSetupPage() {
   const allValid = exercises.every(isValid);
 
   function handleContinue() {
+    if (SKIP_VALIDATION_IN_DEV) {
+      navigate('/home');
+      return;
+    } // убрать проверку после тестирования всех экранов
+
     setShowErrors(true);
 
     if (!allValid) {
       return;
     }
-
     // Временный переход до подключения Backend API
     navigate('/home');
-  }
+    }
+
 
   return (
     <Box
