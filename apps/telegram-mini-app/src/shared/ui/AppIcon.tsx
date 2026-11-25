@@ -13,6 +13,8 @@ type IconName =
   | 'actions'
   | 'chart-no-axes-combined'
   | 'user'
+  | 'trending-up'
+  | 'lock'
   | 'chevron-right'
   | 'history'
   | 'progress-icon'
